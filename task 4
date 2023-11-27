@@ -1,0 +1,24 @@
+// Define a function to calculate mortgage repayment
+function calculateMortgagePayment(principal, annualInterestRate, years) {
+    // Convert annual interest rate to monthly and calculate number of payments
+    const monthlyInterestRate = annualInterestRate / 100 / 12;
+    const numberOfPayments = years * 12;
+
+    // Calculate mortgage payment using the formula: M = P[r(1+r)^n]/[(1+r)^n-1]
+    const mortgagePayment = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments) /
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+
+    // Return the calculated mortgage payment
+    return mortgagePayment;
+}
+
+// Set initial values for principal amount, annual interest rate, and loan duration
+const principalAmount = 200000; // Principal amount of the loan
+const annualInterestRate = 4.5; // Annual interest rate
+const loanDurationInYears = 30; // Loan duration in years
+
+// Calculate the mortgage repayment using the defined function
+const repayment = calculateMortgagePayment(principalAmount, annualInterestRate, loanDurationInYears);
+
+// Display the calculated mortgage repayment
+console.log(`The monthly mortgage repayment for a $${principalAmount} loan at an annual interest rate of ${annualInterestRate}% for ${loanDurationInYears} years is $${repayment.toFixed(2)}.`);
